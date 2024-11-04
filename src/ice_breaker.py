@@ -2,6 +2,8 @@ import os
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
+from langchain_ollama import ChatOllama
+from langchain_core.output_parsers import StrOutputParser
 
 load_dotenv(override=True)
 openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -29,8 +31,9 @@ if __name__ == "__main__":
         input_variables=["information"], template=summary_template
     )
 
-    llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo")
-    chain = summary_prompt_template | llm
+    # llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo")
+    llm = ChatOllama(model="mistral")
+    chain = summary_prompt_template | llm | StrOutputParser()
 
     res = chain.invoke(input={"information": information})
     print(res)
