@@ -34,6 +34,7 @@ def ice_break_with(name: str) -> Tuple:
     chain = summary_prompt_template | llm | summary_parser
 
     res: Summary = chain.invoke(input={"information": linkedin_data})
+    print(res)
     return res, linkedin_data.get("profile_pic_url")
 
 
