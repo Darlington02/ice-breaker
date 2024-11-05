@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 proxy_curl_api_key = os.getenv("PROXY_CURL_API_KEY")
 
-def scrape_linkedin_profile(linkedin_profile_url: str, mock: bool = False):
+def scrape_linkedin_profile(linkedin_profile_url: str, mock: bool = True):
     """
         scrape information from LinkedIn profiles, 
         manually scrape the information from the LinkedIn profile
